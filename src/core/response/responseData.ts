@@ -1,5 +1,5 @@
 export class ResponseData<T> {
-  data: T | '';
+  data: T;
   message: string;
   statusCode: number;
 

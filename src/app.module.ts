@@ -6,12 +6,14 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './modules/users/users.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { LecturesModule } from './modules/lectures/lectures.module';
 import { EnrollmentsModule } from './modules/enrollments/enrollments.module';
 import { JwtModule } from '@nestjs/jwt';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { VerifyTokenModule } from './modules/verify-token/verify-token.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { LessonModule } from './modules/lesson/lesson.module';
+import { ChapterModule } from './modules/chapter/chapter.module';
+import { OrderModule } from './modules/order/order.module';
 
 @Module({
   imports: [
@@ -35,9 +37,11 @@ import { MailerModule } from '@nestjs-modules/mailer';
     UsersModule,
     CoursesModule,
     AuthModule,
-    LecturesModule,
     EnrollmentsModule,
     VerifyTokenModule,
+    LessonModule,
+    ChapterModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

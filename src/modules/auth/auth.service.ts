@@ -8,9 +8,10 @@ import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../users/entities/user.entity';
-import { CreateUserDto } from '../users/dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { ObjectId } from 'mongodb';
 import { UserAlreadyExistsException } from 'src/core/exception/UserAlreadyExistsException';
+import { UserStatus } from 'src/enum/userStatus.enum';
 @Injectable()
 export class AuthService {
   constructor(
@@ -48,6 +49,10 @@ export class AuthService {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       throw new UnauthorizedException('Invalid credentials');
+    }
+
+    if (user.status === UserStatus.PENDING) {
+      throw new UnauthorizedException('User not verified');
     }
 
     return user;

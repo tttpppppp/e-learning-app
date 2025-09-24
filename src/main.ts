@@ -37,14 +37,17 @@ async function bootstrap() {
     .setTitle('E-Learning API')
     .setDescription('Api for E-Learning')
     .setVersion('1.0')
-    .addTag('E-Learning')
+    .addTag('E-Learning System ')
+    .addServer('http://localhost:8080')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       'access-token',
     )
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup('api', app, documentFactory, {
+    customSiteTitle: 'E-Learning API',
+  });
   await app.listen(process.env.PORT ?? 3000);
   if (module.hot) {
     module.hot.accept();

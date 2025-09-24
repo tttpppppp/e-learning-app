@@ -23,5 +23,7 @@ export class User {
   })
   status: UserStatus;
 }
-
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.index({ email: 1 });
+UserSchema.index({ username: 1 });

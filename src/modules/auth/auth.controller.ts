@@ -10,13 +10,15 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ResponseData } from 'src/core/response/responseData';
-import { CreateUserDto } from '../users/dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { LocalGuard } from './guard/local.guard';
 import { JwtAuthGuard } from './guard/jwt.guard';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { randomUUID } from 'crypto';
 import { VerifyTokenService } from '../verify-token/verify-token.service';
 import { LoginDto } from './dto/login.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
+@ApiBearerAuth('access-token')
 @Controller('auth')
 export class AuthController {
   constructor(
